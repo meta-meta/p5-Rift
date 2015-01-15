@@ -1,0 +1,12 @@
+rootProject.name = 'p5-Rift'
+
+gradle.ext.gitDependencies = [
+	[cloneTo:'../p5-Spatial', uri:'https://github.com/meta-meta/p5-Spatial.git'],
+	[cloneTo:'../p5-Helpers', uri:'https://github.com/meta-meta/p5-Helpers.git'],
+	[cloneTo:'../processing', uri:'https://github.com/meta-meta/processing.git', subPath:'/core']
+]
+
+def includes = []
+gradle.ext.gitDependencies.each() { includes << it.cloneTo + (it.subPath ? it.subPath : '') }
+
+include (includes as String[]) 
