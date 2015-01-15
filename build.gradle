@@ -21,10 +21,10 @@ repositories {
 }
 
 dependencies {
+    compile 'org.saintandreas:jovr:0.4.1.1'
     compile project (':../processing/core')
     compile project (':../p5-Spatial')
     compile project (':../p5-Helpers')
-    compile group: 'org.saintandreas', name: 'jovr', version: '0.4.1.1'
 }
 
 sourceCompatibility = 1.7
@@ -35,6 +35,11 @@ task wrapper(type: Wrapper) {
 	gradleVersion = '2.2.1'
 }
 
+idea {
+	module {
+		name = 'p5-Rift'
+	}
+}
 
 def cloneRepo(repo) {
 	def cloneTo = file(repo.cloneTo)
