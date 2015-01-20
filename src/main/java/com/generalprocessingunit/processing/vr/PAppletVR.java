@@ -1,4 +1,4 @@
-package com.generalprocessingunit.vr;
+package com.generalprocessingunit.processing.vr;
 
 import com.generalprocessingunit.processing.space.AxisAngle;
 import com.generalprocessingunit.processing.space.EuclideanSpaceObject;
