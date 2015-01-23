@@ -1,9 +1,9 @@
 package com.generalprocessingunit.processing.vr;
 
 import com.generalprocessingunit.processing.space.AxisAngle;
-import com.generalprocessingunit.processing.space.EuclideanSpaceObject;
 import com.generalprocessingunit.processing.space.Orientation;
 import com.generalprocessingunit.processing.space.Quaternion;
+import com.generalprocessingunit.processing.vr.controls.HeadModel;
 import com.oculusvr.capi.*;
 import processing.core.PApplet;
 import processing.core.PGraphics;
@@ -22,7 +22,7 @@ import static com.oculusvr.capi.OvrLibrary.ovrRenderAPIType.ovrRenderAPI_OpenGL;
 import static com.oculusvr.capi.OvrLibrary.ovrTrackingCaps.ovrTrackingCap_Orientation;
 import static com.oculusvr.capi.OvrLibrary.ovrTrackingCaps.ovrTrackingCap_Position;
 
-public abstract class PAppletVR extends PApplet {
+public abstract class PAppletVR extends PApplet implements HeadModel {
     private static final float PIXELS_PER_DISPLAY_PIXEL = 1f;
 
     private final Hmd hmd;
@@ -34,15 +34,7 @@ public abstract class PAppletVR extends PApplet {
     private final Posef[] poses = (Posef[]) new Posef().toArray(2);
     private final PMatrix3D[] projections = new PMatrix3D[2];
 
-    /** Can be thought of as a tank floating in space.
-     * The Oculus rift is the homunculus inside.
-     * */
-    public EuclideanSpaceObject headContainer = new EuclideanSpaceObject();
     public PVector lookat = new PVector();
-
-    public EuclideanSpaceObject head = new EuclideanSpaceObject();
-
-    public EuclideanSpaceObject neck = new EuclideanSpaceObject();
 
     public int eyeTextureW, eyeTextureH;
 
@@ -77,10 +69,10 @@ public abstract class PAppletVR extends PApplet {
 //        int displayId = hmd.DisplayId; DisplayId is -1  :-(
 
         //TODO: this is a total hack
-        int displayId = Integer.parseInt(hmd.DisplayDeviceName.getString(0).substring(11, 12)) + 1;
+//        int displayId = Integer.parseInt(hmd.DisplayDeviceName.getString(0).substring(11, 12)) + 1;
         hmd.destroy();
 
-        PApplet.main(new String[]{"--full-screen", "--display=" + displayId, clazz.getCanonicalName()});
+        PApplet.main(new String[]{"--full-screen", "--display=" + 1, clazz.getCanonicalName()});
     }
 
 //    @Override
