@@ -25,6 +25,7 @@ dependencies {
     compile project (':../processing/core')
     compile project (':../p5-Spatial')
     compile project (':../p5-Helpers')
+    compile project (':../p5-VR')
 }
 
 sourceCompatibility = 1.7
