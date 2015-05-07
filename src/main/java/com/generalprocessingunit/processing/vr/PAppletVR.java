@@ -24,6 +24,7 @@ import static com.oculusvr.capi.OvrLibrary.ovrTrackingCaps.ovrTrackingCap_Positi
 
 public abstract class PAppletVR extends PApplet implements HeadModel {
     private static final float PIXELS_PER_DISPLAY_PIXEL = 1f;
+    private static final int DISPLAY = 1;
 
     private final Hmd hmd;
 
@@ -72,7 +73,7 @@ public abstract class PAppletVR extends PApplet implements HeadModel {
 //        int displayId = Integer.parseInt(hmd.DisplayDeviceName.getString(0).substring(11, 12)) + 1;
         hmd.destroy();
 
-        PApplet.main(new String[]{"--full-screen", "--display=" + 1, clazz.getCanonicalName()});
+        PApplet.main(new String[]{ARGS_FULL_SCREEN, ARGS_DISPLAY + "=" + DISPLAY, clazz.getCanonicalName()});
     }
 
 //    @Override
@@ -223,7 +224,11 @@ public abstract class PAppletVR extends PApplet implements HeadModel {
             * */
             views[eye].beginDraw();
 
+            views[eye].perspective();
+            views[eye].camera();
+            views[eye].hint(DISABLE_DEPTH_MASK);
             drawViewPreCamera(eye, views[eye]);
+            views[eye].hint(ENABLE_DEPTH_MASK);
 
             views[eye].setProjection(projections[eye]);
 
